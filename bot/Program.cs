@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DotaTextGame
@@ -17,7 +18,7 @@ namespace DotaTextGame
 
             Main main = new Main();
             main.bw_DoWork(args[0]);
-            Console.ReadLine();
+            Thread.Sleep(-1);
         }
     }
 }
