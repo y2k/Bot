@@ -257,7 +257,7 @@ namespace DotaTextGame
         public int rate = 1000;
 
         static string connection = "server=127.0.0.1;database=user;uid=root;password=xjkfr2017";
-        public static MySql.Data.MySqlClient.MySqlConnection con = new MySql.Data.MySqlClient.MySqlConnection(connection);
+        public static MySql.Data.MySqlClient.MySqlConnection con;
         MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand("", con);
         bool Made = false;
 

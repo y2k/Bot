@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Timers;
+using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot.Types.ReplyMarkups;
 
@@ -24,22 +24,16 @@ namespace DotaTextGame
 
             this.users = new Users();
 
-            timer = new Timer();
-            timer.Interval = 1000;
-            timer.Elapsed += AddSecondToTime;
-            timer.Enabled = true;
-
             Game.Initialize();
         }
 
-        private void AddSecondToTime(Object source, ElapsedEventArgs e)
+        private void AddSecondToTime(Object source, object e)
         {
             Time += 1L;
         }
 
-        public async void bw_DoWork()
+        public async void bw_DoWork(string key)
         {
-            var key = "xxxxxxxxxxxx";
             List<User> availablePlayers = new List<User>();
             try
             {
@@ -49,7 +43,7 @@ namespace DotaTextGame
                 await Bot.SetWebhookAsync("");
                 //Bot.SetWebhook("");
                 int offset = 0;
-                timer.Start();
+                timer = new Timer(x => AddSecondToTime(null, null), null, 0, 1000);
                 while (true)
                 {
                     availablePlayers.RemoveAll(x => x.status != User.Status.Searching);

@@ -11,10 +11,12 @@ namespace DotaTextGame
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            User.con = new MySql.Data.MySqlClient.MySqlConnection(args[1]);
+
             Main main = new Main();
-            main.bw_DoWork();
+            main.bw_DoWork(args[0]);
             Console.ReadLine();
         }
     }
