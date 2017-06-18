@@ -1,6 +1,6 @@
 FROM microsoft/dotnet:latest
 
-ARG source=.
+ARG source=bot
 WORKDIR /app
 COPY $source .
 
